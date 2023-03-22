@@ -5,6 +5,8 @@ describe('pick', () => {
     var object = { 'a': 1, 'b': '2', 'c': 3 };
 
     expect(pick(object, ['a', 'c'])).toEqual({ a: 1, c: 3 }),
+    expect(pick(object, ['a'])).toEqual({ a: 1 }),
+    expect(pick(object, ['b', 'a'])).toEqual({ a: 1, b: '2' }),
  
     expect(() => pick(1)).toThrow(TypeError),
     expect(() => pick('string')).toThrow(TypeError),

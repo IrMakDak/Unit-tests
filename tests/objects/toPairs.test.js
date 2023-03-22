@@ -6,11 +6,16 @@ describe('toPairs', () => {
     function Foo() {
         this.a = 1;
         this.b = 2;
-      }
+    }
+    function Fun() {
+      this.f = '4',
+      this.h = 0
+    }
        
       Foo.prototype.c = 3;
 
     expect(toPairs(new Foo)).toEqual([['a', 1], ['b', 2]]),
+    expect(toPairs(new Fun)).toEqual([['f', '4'], ['h', 0]]),
     
  
     expect(() => toPairs(1)).toThrow(TypeError),

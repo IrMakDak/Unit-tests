@@ -6,7 +6,7 @@
  * 
  * @param {array} The array to inspect
  * @param {*} The value to search for
- * @param {number} The index to search from
+ * @param {number} The currentIndex to search from
  * @return {boolean} Returns true if value is found, else false
  *
  * @example:
@@ -19,11 +19,11 @@ function includes(array, value, fromIndex = 0) {
         throw new TypeError(`${array} is not an array`);
     }
 
-    let index = fromIndex;
+    let currentIndex = fromIndex;
     let result = false;
 
-    for (index; index < array.length; index += 1) {
-        if (array[index] === value) {
+    for (currentIndex; currentIndex < array.length; currentIndex += 1) {
+        if (array[currentIndex] === value) {
             result = true;
             break
         }

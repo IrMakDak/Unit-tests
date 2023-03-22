@@ -19,9 +19,9 @@ function take(array, number = 1) {
     let result = [];
     let resultCounter = 0;
 
-    for (let index = 0; index < number; index += 1) {
-        if (array[index]) {
-            result[resultCounter] = array[index]
+    for (let currentIndex = 0; currentIndex < number; currentIndex += 1) {
+        if (array[currentIndex]) {
+            result[resultCounter] = array[currentIndex]
             resultCounter += 1;
         }
     }

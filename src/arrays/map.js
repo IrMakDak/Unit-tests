@@ -1,14 +1,14 @@
 /**
  * Creates an array of values by running each element in array
  * thru iteratee. The iteratee is invoked with three arguments:
- * (value, index, array).
+ * (value, currentIndex, array).
  * 
  * @param {array} The array to iterate over
  * @param {function} The function invoked per iteration
  * @return {array} Returns the new mapped array
  *
  * @example:
- * function square(value, index, array) {
+ * function square(value, currentIndex, array) {
  *      return value * value;
  * }
  * 
@@ -21,8 +21,8 @@ function map(array, iteratee) {
     }
 
     let result = [];
-    for (let index = 0; index < array.length; index += 1) {
-        result[index] = iteratee(array[index])
+    for (let currentIndex = 0; currentIndex < array.length; currentIndex += 1) {
+        result[currentIndex] = iteratee(array[currentIndex])
     }
     return result;
 }

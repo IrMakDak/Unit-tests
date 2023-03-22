@@ -4,6 +4,8 @@ describe('pickBy', () => {
   test("Creates an object composed of the object properties predicate returns truthy for.", () => {
     var object = { 'a': 1, 'b': '2', 'c': 3 };
     var objectSec = { 'a': 'aaa', 'b': '2', 'c': 3 , 'd': '44'};
+    var objectThird = { 'z': 0, 'd': 3 , 'r': null};
+    
 
     let funcNotNumber= (obj) => {
         let keys = Object.keys(obj);
@@ -18,6 +20,7 @@ describe('pickBy', () => {
 
     expect(pickBy(object, funcNotNumber)).toEqual({ 'a': 1, 'c': 3 }),
     expect(pickBy(objectSec, funcNotNumber)).toEqual({'c': 3 }),
+    expect(pickBy(objectThird, funcNotNumber)).toEqual({'z': 0, 'd': 3 }),
     
  
     expect(() => pickBy(1)).toThrow(TypeError),

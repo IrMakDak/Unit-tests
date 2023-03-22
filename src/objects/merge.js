@@ -20,13 +20,13 @@ function merge(...objects) {
     for (let objIndex = 0; objIndex < objects.length; objIndex += 1) {
         if (typeof(objects[objIndex]) === 'object' && objects[objIndex].length !== 0) {
             let keys = Object.keys(objects[objIndex]) 
-            for (let index = 0; index < keys.length; index += 1) {
+            for (let keyIndex = 0; keyIndex < keys.length; keyIndex += 1) {
                 
-                let key = keys[index]
+                let key = keys[keyIndex]
                 let value = objects[objIndex][key]
-                for (let i = 0; i < value.length; i += 1) {
-                    if (value[i] && value[i+1]) {
-                        value = {...value[i], ...value[i+1]}
+                for (let valueIndex = 0; valueIndex < value.length; valueIndex += 1) {
+                    if (value[valueIndex] && value[valueIndex+1]) {
+                        value = {...value[valueIndex], ...value[valueIndex+1]}
                     }
                 }
 

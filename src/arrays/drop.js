@@ -30,9 +30,9 @@ function drop(array, number = 1) {
     let result = []
     let resultIndex = 0
     
-    for (let index = 0; index < array.length; index += 1) {
-        if (index >= number) {
-            result[resultIndex] = array[index]
+    for (let arrayIndex = 0; arrayIndex < array.length; arrayIndex += 1) {
+        if (arrayIndex >= number) {
+            result[resultIndex] = array[arrayIndex]
             resultIndex += 1
         }
     }

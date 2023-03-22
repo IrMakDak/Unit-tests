@@ -1,7 +1,7 @@
 /**
  * Iterates over elements of array, returning an array of
  * all elements predicate returns truthy for. The predicate is invoked
- * with three arguments: (value, index, array).
+ * with three arguments: (value, arrayIndex, array).
  * 
  * @param {array} The array to iterate over
  * @param {function} The function invoked per iteration
@@ -14,7 +14,7 @@
  * ];
  * 
  * filter(users, function(value) { return !value.active; })       => object for ['fred']
- * filter(users, function(value, index) { return index < 1; })    => object for ['barney']
+ * filter(users, function(value, arrayIndex) { return arrayIndex < 1; })    => object for ['barney']
 */
 
 function filter(array, predicate) {
@@ -26,9 +26,9 @@ function filter(array, predicate) {
     let resultCounter = 0;
     let resultString = '';
 
-    for (let index = 0; index < array.length; index += 1) {
-        if (predicate(array[index], index, array)) {
-            result[resultCounter] = `'${array[index].user}'`;
+    for (let arrayIndex = 0; arrayIndex < array.length; arrayIndex += 1) {
+        if (predicate(array[arrayIndex], arrayIndex, array)) {
+            result[resultCounter] = `'${array[arrayIndex].user}'`;
             resultCounter += 1;
         };
     }
