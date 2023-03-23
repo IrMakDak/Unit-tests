@@ -1,3 +1,4 @@
+var _ = require('lodash');
 /**
  * Recursively merges own and inherited enumerable string keyed       * properties of source objects into the destination object
  * 
@@ -16,32 +17,13 @@
 */
 
 function merge(...objects) {
-    let result = {};
     for (let objIndex = 0; objIndex < objects.length; objIndex += 1) {
         if (typeof(objects[objIndex]) === 'object' && objects[objIndex].length !== 0) {
-            let keys = Object.keys(objects[objIndex]) 
-            for (let keyIndex = 0; keyIndex < keys.length; keyIndex += 1) {
-                
-                let key = keys[keyIndex]
-                let value = objects[objIndex][key]
-                for (let valueIndex = 0; valueIndex < value.length; valueIndex += 1) {
-                    if (value[valueIndex] && value[valueIndex+1]) {
-                        value = {...value[valueIndex], ...value[valueIndex+1]}
-                    }
-                }
-
-                if (result[key]) {
-                    result[key] = [result[key], value]
-                } else {
-                    result[key] = value
-                }
-            }
-
+            return objects[objIndex]
         } else {
             throw new TypeError(`${objects} is not an object`);
         }
     }
-    return result
 }
 
 module.exports = merge;

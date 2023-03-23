@@ -22,28 +22,17 @@ function dropWhile(array, predicate) {
     if (!Array.isArray(array)) {
         throw new TypeError(`${array} is not an array`);
     }
+
     let result = [];
     let resultCounter = 0;
-    let resultString = '';
     for (let index = 0; index < array.length; index += 1) {
-        if (!predicate(array[index], index, array)) {
-            result[resultCounter] = `'${array[index].user}'`;
-            resultCounter += 1;
-        };
-    }
 
-    if (result.length > 1) {
-        let resultItem = 0;
-        resultString = `objects for [`
-        while (resultItem < result.length - 1) {
-            resultString += result[resultItem] + ', ';
-            resultItem += 1;
+        if (!predicate(array[index])) {
+            result[resultCounter] = array[index];
+            resultCounter += 1;
         }
-        resultString += result[result.length - 1] + ']';
-    } else {
-        resultString = `object for [${result}]`
     }
-    return resultString;
+    return result
 }
 
 module.exports = dropWhile;

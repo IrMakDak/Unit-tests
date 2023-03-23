@@ -24,23 +24,15 @@ function filter(array, predicate) {
 
     let result = [];
     let resultCounter = 0;
-    let resultString = '';
+    let resultObj = {};
 
     for (let arrayIndex = 0; arrayIndex < array.length; arrayIndex += 1) {
         if (predicate(array[arrayIndex], arrayIndex, array)) {
-            result[resultCounter] = `'${array[arrayIndex].user}'`;
+            result[resultCounter] = array[arrayIndex];
             resultCounter += 1;
         };
     }
-
-    let resultItem = 0;
-    resultString = `object for [`
-    while (resultItem < result.length - 1) {
-        resultString += result[resultItem] + ', ';
-        resultItem += 1;
-    }
-    resultString += result[result.length - 1] + ']';
-    return resultString;
+    return(result)
 }
 
 module.exports = filter;

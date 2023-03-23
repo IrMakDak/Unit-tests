@@ -1,4 +1,5 @@
 const find = require('../../src/arrays/find');
+var _ = require('lodash');
 
 describe('find', () => {
   test('Iterates over elements of array, returning the first element predicate returns truthy for', () => {
@@ -7,9 +8,9 @@ describe('find', () => {
         { 'user': 'fred',    'age': 40, 'active': false },
         { 'user': 'pebbles', 'age': 1,  'active': true }
     ];
-    expect(find(users, function(value) { return value.age < 40; })).toEqual("object for 'barney'"),
-    expect(find(users, function(value) { return value.age < 40; }, 1)).toEqual("object for 'pebbles'")
-    expect(find(users, function(value, index) { return index > 1; })).toEqual("object for 'pebbles'")
+    expect(find(users, function(value) { return value.age < 40; })).toEqual(_.find(users, function(value) { return value.age < 40; })),
+    expect(find(users, function(value) { return value.age < 40; }, 1)).toEqual(_.find(users, function(value) { return value.age < 40; }, 1))
+    expect(find(users, function(value, index) { return index > 1; })).toEqual(_.find(users, function(value, index) { return index > 1; }))
  
     expect(() => find(1)).toThrow(TypeError),
     expect(() => find('string')).toThrow(TypeError),

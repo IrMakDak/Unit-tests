@@ -1,4 +1,5 @@
 const map = require('../../src/arrays/map');
+var _ = require('lodash');
 
 describe('map', () => {
   test("Creates an array of values by running each element in array thru iteratee", () => {
@@ -8,10 +9,10 @@ describe('map', () => {
     function squareRoot(value) {
         return Math.sqrt(value);
     }
-    expect(map([4, 8], square)).toEqual([16, 64]),
-    expect(map([1, 2, 3], square)).toEqual([1, 4, 9]),
-    expect(map([4, 9], squareRoot)).toEqual([2, 3]),
-    expect(map([16], squareRoot)).toEqual([4]),
+    expect(map([4, 8], square)).toEqual(_.map([4, 8], square)),
+    expect(map([1, 2, 3], square)).toEqual(_.map([1, 2, 3], square)),
+    expect(map([4, 9], squareRoot)).toEqual(_.map([4, 9], squareRoot)),
+    expect(map([16], squareRoot)).toEqual(_.map([16], squareRoot)),
  
     expect(() => map(1)).toThrow(TypeError),
     expect(() => map('string')).toThrow(TypeError),

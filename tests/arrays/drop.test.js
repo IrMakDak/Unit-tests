@@ -1,13 +1,14 @@
 const drop = require('../../src/arrays/drop');
+var _ = require('lodash');
 
 describe('drop', () => {
   test('creates a slice of array with n elements dropped from the beginning', () => {
-    expect(drop([1, 2, 3])).toEqual([2, 3]),
-    expect(drop([1, 2, 3], 2)).toEqual([3]),
-    expect(drop([1, 2, 3], 5)).toEqual([]),
-    expect(drop([1, 2, 3], 0)).toEqual([1, 2, 3]),
-    expect(drop(['a', 'b', 'c', 'd'], 3)).toEqual(['d']),
-    expect(drop([null, 0, false, undefined, 'string', 1])).toEqual([0, false, undefined, 'string', 1]),
+    expect(drop([1, 2, 3])).toEqual(_.drop([1, 2, 3])),
+    expect(drop([1, 2, 3], 2)).toEqual(_.drop([1, 2, 3], 2)),
+    expect(drop([1, 2, 3], 5)).toEqual(_.drop([1, 2, 3], 5)),
+    expect(drop([1, 2, 3], 0)).toEqual(_.drop([1, 2, 3], 0)),
+    expect(drop(['a', 'b', 'c', 'd'], 3)).toEqual(_.drop(['a', 'b', 'c', 'd'], 3)),
+    expect(drop([null, 0, false, undefined, 'string', 1])).toEqual(_.drop([null, 0, false, undefined, 'string', 1])),
  
     expect(() => drop(1)).toThrow(TypeError),
     expect(() => drop('string')).toThrow(TypeError),

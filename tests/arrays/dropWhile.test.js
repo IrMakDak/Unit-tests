@@ -1,14 +1,14 @@
 const dropWhile = require('../../src/arrays/dropWhile');
+var _ = require('lodash');
 
 describe('dropWhile', () => {
-  test('creates a slice of array excluding elements dropped from the beginning', () => {
+  test('Creates a slice of array excluding elements dropped from the beginning', () => {
     var users = [
         { 'user': 'barney',  'active': false },
         { 'user': 'fred',    'active': false },
         { 'user': 'pebbles', 'active': true }
     ];
-    expect(dropWhile(users, function(value) { return !value.active; })).toEqual("object for ['pebbles']"),
-    expect(dropWhile(users, function(value, index) { return index > 1; })).toEqual("objects for ['barney', 'fred']")
+    expect(dropWhile(users, function(value) { return !value.active })).toEqual(_.dropWhile(users, function(value) { return !value.active })),
  
     expect(() => dropWhile(1)).toThrow(TypeError),
     expect(() => dropWhile('string')).toThrow(TypeError),

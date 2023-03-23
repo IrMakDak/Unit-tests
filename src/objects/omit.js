@@ -26,7 +26,6 @@ function omit(object, [...paths]) {
     }
 
     let result = {};
-
     let keys = Object.keys(object);
 
     for (let keyIndex = 0; keyIndex < keys.length; keyIndex += 1) {

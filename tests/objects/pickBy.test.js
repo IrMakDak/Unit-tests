@@ -1,4 +1,5 @@
 const pickBy = require('../../src/objects/pickBy');
+var _ = require('lodash');
 
 describe('pickBy', () => {
   test("Creates an object composed of the object properties predicate returns truthy for.", () => {
@@ -7,20 +8,17 @@ describe('pickBy', () => {
     var objectThird = { 'z': 0, 'd': 3 , 'r': null};
     
 
-    let funcNotNumber= (obj) => {
-        let keys = Object.keys(obj);
-        let result = {};
-        for (let keyIndex = 0; keyIndex < keys.length; keyIndex += 1) {
-            if (typeof(obj[keys[keyIndex]]) === 'number') {
-                result[keys[keyIndex]] = obj[keys[keyIndex]]
-            }
-        }
-        return(result)
+    let isNumber= (value) => {
+      if (typeof(value) === 'number') {
+          return true
+      } else {
+        return false
+      }
     }
 
-    expect(pickBy(object, funcNotNumber)).toEqual({ 'a': 1, 'c': 3 }),
-    expect(pickBy(objectSec, funcNotNumber)).toEqual({'c': 3 }),
-    expect(pickBy(objectThird, funcNotNumber)).toEqual({'z': 0, 'd': 3 }),
+    expect(pickBy(object, isNumber)).toEqual(_.pickBy(object, isNumber)),
+    expect(pickBy(objectSec, isNumber)).toEqual(_.pickBy(objectSec, isNumber)),
+    expect(pickBy(objectThird, isNumber)).toEqual(_.pickBy(objectThird, isNumber)),
     
  
     expect(() => pickBy(1)).toThrow(TypeError),

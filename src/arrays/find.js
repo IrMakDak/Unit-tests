@@ -30,7 +30,7 @@ function find(array, predicate, fromIndex = 0) {
 
     for (arrayIndex; arrayIndex < array.length; arrayIndex += 1) {
         if (predicate(array[arrayIndex], arrayIndex, array)) {
-            result = `object for '${array[arrayIndex].user}'`
+            result = array[arrayIndex]
             break
         } else {
             result = undefined;

@@ -1,4 +1,5 @@
 const toPairs = require('../../src/objects/toPairs');
+var _ = require('lodash');
 
 describe('toPairs', () => {
   test("Creates an array of own enumerable string keyed-value pairs for object", () => {
@@ -14,8 +15,8 @@ describe('toPairs', () => {
        
       Foo.prototype.c = 3;
 
-    expect(toPairs(new Foo)).toEqual([['a', 1], ['b', 2]]),
-    expect(toPairs(new Fun)).toEqual([['f', '4'], ['h', 0]]),
+    expect(toPairs(new Foo)).toEqual(_.toPairs(new Foo)),
+    expect(toPairs(new Fun)).toEqual(_.toPairs(new Fun)),
     
  
     expect(() => toPairs(1)).toThrow(TypeError),

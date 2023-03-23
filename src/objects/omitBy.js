@@ -1,3 +1,4 @@
+var _ = require('lodash');
 /**
  * creates an object composed of the own and inherited enumerable string keyed properties of object that predicate doesn't return truthy for.
  * 
@@ -26,19 +27,18 @@
 */
 
 function omitBy(object, func) {
-    let exclude = func(object);
-    excludeKeys = Object.keys(exclude)
+    if (typeof(object) !== 'object' || Array.isArray(object)) {
+        throw new TypeError(`${object} is not an array`);
+    }
     let result = {};
     let keys = Object.keys(object)
     for (let keyIndex = 0; keyIndex < keys.length; keyIndex += 1) {
-        let isNum = false;
-        for (let excludeIndex = 0; excludeIndex < excludeKeys.length; excludeIndex += 1) {
-            if (excludeKeys[excludeIndex] === keys[keyIndex]) {
-                isNum = true
-            }
-        }
-        if (!isNum) {
-            result[keys[keyIndex]] = object[keys[keyIndex]]
+        let currentKey = keys[keyIndex];
+        let currentValue = object[currentKey]
+        if (!func(currentValue)) {
+            result[currentKey] = currentValue
+        } else {
+            continue
         }
     }
     return(result)
