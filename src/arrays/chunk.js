@@ -22,36 +22,36 @@
  *chunk(undefined) => TypeError: undefined is not an array
 */
 
-function chunk (array, number = 1) {
+function chunk(array, number = 1) {
   if (!Array.isArray(array)) {
-    throw new TypeError(`${array} is not an array`)
+    throw new TypeError(`${array} is not an array`);
   }
 
-  const result = []
-  let resultCounter = 0
-  let subArr = []
-  let subArrCounter = 0
-  let innerNumber = number
+  const result = [];
+  let resultCounter = 0;
+  let subArr = [];
+  let subArrCounter = 0;
+  let innerNumber = number;
 
   for (let arrayIndex = 0; arrayIndex < array.length; arrayIndex += 1) {
     if (arrayIndex !== innerNumber) {
-      subArr[subArrCounter] = array[arrayIndex]
-      subArrCounter += 1
+      subArr[subArrCounter] = array[arrayIndex];
+      subArrCounter += 1;
     } else {
-      result[resultCounter] = subArr
-      resultCounter += 1
-      subArr = []
-      subArrCounter = 0
-      subArr[subArrCounter] = array[arrayIndex]
-      subArrCounter += 1
-      innerNumber += number
+      result[resultCounter] = subArr;
+      resultCounter += 1;
+      subArr = [];
+      subArrCounter = 0;
+      subArr[subArrCounter] = array[arrayIndex];
+      subArrCounter += 1;
+      innerNumber += number;
     }
   }
 
   if (subArr.length !== 0) {
-    result[resultCounter] = subArr
-    resultCounter += 1
+    result[resultCounter] = subArr;
+    resultCounter += 1;
   }
-  return (result)
+  return result;
 }
 module.exports = chunk;

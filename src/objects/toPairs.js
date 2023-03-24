@@ -19,18 +19,18 @@
 */
 
 function toPairs(obj) {
-    if (typeof(obj) !== 'object' || Array.isArray(obj)) {
-        throw new TypeError(`${obj} is not an object`);
-    }
-    let result = []
-    let keys = Object.keys(obj)
-    for (let resultIndex = 0; resultIndex < keys.length; resultIndex += 1) {
-        let internalArray = []
-        internalArray[0] = keys[resultIndex]
-        internalArray[1] = obj[keys[resultIndex]]
-        result[resultIndex] = internalArray
-    }
-    return result
+  if (typeof obj !== "object" || Array.isArray(obj)) {
+    throw new TypeError(`${obj} is not an object`);
+  }
+  let result = [];
+  let keys = Object.keys(obj);
+  for (let resultIndex = 0; resultIndex < keys.length; resultIndex += 1) {
+    let internalArray = [];
+    internalArray[0] = keys[resultIndex];
+    internalArray[1] = obj[keys[resultIndex]];
+    result[resultIndex] = internalArray;
+  }
+  return result;
 }
 
 module.exports = toPairs;

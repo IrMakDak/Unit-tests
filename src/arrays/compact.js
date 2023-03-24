@@ -10,30 +10,30 @@
  * compact([1, 2, 3]) => [1, 2, 3]
  * compact([false, null, 0, "", undefined, NaN])
  * compact([]) => []
- * 
+ *
  * compact(1)) => TypeError
  * compact('string')) => TypeError
  * compact(false)) => TypeError
  * compact({})) => TypeError
- * 
+ *
  * compact(undefined) => TypeError
  * compact(null) => TypeError
  * compact(NaN) => TypeError
-*/
+ */
 
-function compact (innerArray) {
+function compact(innerArray) {
   if (!Array.isArray(innerArray)) {
-    throw new TypeError(`${innerArray} is not an array`)
+    throw new TypeError(`${innerArray} is not an array`);
   }
 
-  const result = []
-  let resultCounter = 0
+  const result = [];
+  let resultCounter = 0;
   for (let counter = 0; counter < innerArray.length; counter += 1) {
     if (Boolean(innerArray[counter]) === true) {
-      result[resultCounter] = innerArray[counter]
-      resultCounter += 1
+      result[resultCounter] = innerArray[counter];
+      resultCounter += 1;
     }
   }
-  return result
+  return result;
 }
 module.exports = compact;
