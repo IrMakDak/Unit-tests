@@ -16,16 +16,11 @@ describe('toPairs', () => {
       Foo.prototype.c = 3;
 
     expect(toPairs(new Foo)).toEqual(_.toPairs(new Foo)),
-    expect(toPairs(new Fun)).toEqual(_.toPairs(new Fun)),
-    
- 
-    expect(() => toPairs(1)).toThrow(TypeError),
-    expect(() => toPairs('string')).toThrow(TypeError),
-    expect(() => toPairs(false)).toThrow(TypeError),
-    expect(() => toPairs([])).toThrow(TypeError),
-
-    expect(() => toPairs(undefined)).toThrow(TypeError),
-    expect(() => toPairs(null)).toThrow(TypeError),
-    expect(() => toPairs(NaN)).toThrow(TypeError)
+    expect(toPairs(new Fun)).toEqual(_.toPairs(new Fun))
+  });
+  test.each([
+    [1], ['string'], [false], [undefined], [null], [NaN]
+  ])('toPairs errors', (value) => {
+    expect(() => toPairs(value)).toThrow(TypeError)
   })
 })

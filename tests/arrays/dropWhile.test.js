@@ -8,15 +8,11 @@ describe('dropWhile', () => {
         { 'user': 'fred',    'active': false },
         { 'user': 'pebbles', 'active': true }
     ];
-    expect(dropWhile(users, function(value) { return !value.active })).toEqual(_.dropWhile(users, function(value) { return !value.active })),
- 
-    expect(() => dropWhile(1)).toThrow(TypeError),
-    expect(() => dropWhile('string')).toThrow(TypeError),
-    expect(() => dropWhile(false)).toThrow(TypeError),
-    expect(() => dropWhile({})).toThrow(TypeError),
-
-    expect(() => dropWhile(undefined)).toThrow(TypeError),
-    expect(() => dropWhile(null)).toThrow(TypeError),
-    expect(() => dropWhile(NaN)).toThrow(TypeError)
+    expect(dropWhile(users, function(value) { return !value.active })).toEqual(_.dropWhile(users, function(value) { return !value.active }))
+  });
+  test.each([
+    [1], ['string'], [false], [{}], [undefined], [null], [NaN]
+  ])('dropWhile errors', (value) => {
+    expect(() => dropWhile(value)).toThrow(TypeError)
   })
 })

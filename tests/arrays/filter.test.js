@@ -9,14 +9,10 @@ describe('filter', () => {
     ];
     expect(filter(users, function(value) { return !value.active; })).toEqual(_.filter(users, function(value) { return !value.active; })),
     expect(filter(users, function(value, index) { return index < 1; })).toEqual(_.filter(users, function(value, index) { return index < 1; }))
- 
-    expect(() => filter(1)).toThrow(TypeError),
-    expect(() => filter('string')).toThrow(TypeError),
-    expect(() => filter(false)).toThrow(TypeError),
-    expect(() => filter({})).toThrow(TypeError),
-
-    expect(() => filter(undefined)).toThrow(TypeError),
-    expect(() => filter(null)).toThrow(TypeError),
-    expect(() => filter(NaN)).toThrow(TypeError)
+  });
+  test.each([
+    [1], ['string'], [false], [{}], [undefined], [null], [NaN]
+  ])('filter errors', (value) => {
+    expect(() => filter(value)).toThrow(TypeError)
   })
 })

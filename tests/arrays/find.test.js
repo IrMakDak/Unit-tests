@@ -2,23 +2,21 @@ const find = require('../../src/arrays/find');
 var _ = require('lodash');
 
 describe('find', () => {
-  test('Iterates over elements of array, returning the first element predicate returns truthy for', () => {
-    var users = [
-        { 'user': 'barney',  'age': 36, 'active': true },
-        { 'user': 'fred',    'age': 40, 'active': false },
-        { 'user': 'pebbles', 'age': 1,  'active': true }
-    ];
-    expect(find(users, function(value) { return value.age < 40; })).toEqual(_.find(users, function(value) { return value.age < 40; })),
-    expect(find(users, function(value) { return value.age < 40; }, 1)).toEqual(_.find(users, function(value) { return value.age < 40; }, 1))
-    expect(find(users, function(value, index) { return index > 1; })).toEqual(_.find(users, function(value, index) { return index > 1; }))
- 
-    expect(() => find(1)).toThrow(TypeError),
-    expect(() => find('string')).toThrow(TypeError),
-    expect(() => find(false)).toThrow(TypeError),
-    expect(() => find({})).toThrow(TypeError),
-
-    expect(() => find(undefined)).toThrow(TypeError),
-    expect(() => find(null)).toThrow(TypeError),
-    expect(() => find(NaN)).toThrow(TypeError)
+  var users = [
+    { 'user': 'barney',  'age': 36, 'active': true },
+    { 'user': 'fred',    'age': 40, 'active': false },
+    { 'user': 'pebbles', 'age': 1,  'active': true }
+  ];
+  test.each([
+    [users, function(value) { return value.age < 40; }],
+    [users, function(value) { return value.age < 40; }, 1],
+    [users, function(value, index) { return index > 1; }]
+  ])('Iterates over elements of array, returning the first element predicate returns truthy for', (users, func, fromIndex = 0) => {
+    expect(find(users, func, fromIndex)).toEqual(_.find(users, func, fromIndex))
+  });
+  test.each([
+    [1], ['string'], [false], [{}], [undefined], [null], [NaN]
+  ])('find errors', (value) => {
+    expect(() => find(value)).toThrow(TypeError)
   })
 })
